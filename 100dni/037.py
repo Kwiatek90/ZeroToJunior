@@ -10,4 +10,5 @@
 for i in range(1,11):
     print("\t")
     for j in range(1,11):
-        print(i * j, end=" ")
+        print(i * j, end="\t")
+        

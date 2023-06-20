@@ -10,7 +10,10 @@ def perform_calculation(num1, num2, operator):
     elif operator == "*":
         return num1 * num2
     elif operator == "/":
-        return num1 / num2
+        if num2 == 0:
+            return "Zero division"
+        else: 
+            return num1 / num2
     else:
         return "Invalid operator"
 

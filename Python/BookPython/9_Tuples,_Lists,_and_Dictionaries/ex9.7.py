@@ -27,7 +27,7 @@
 
 #If the user answers correctly, display "Correct" and end the program.
 
-#However, if the user exits without guessing correctly, display the correct answer and the w
+#owever, if the user exits without guessing correctly, display the correct answer and the word "Goodbye".
 
 import random
 
@@ -43,3 +43,22 @@ capitals_dict = {
 'Florida': 'Tallahassee',
 'Georgia': 'Atlanta',
 }
+
+
+def guess_capital(library):
+    state_random = random.choice(list(library))
+    state = state_random
+    capital= library[state_random]
+    
+    while True:
+        guess = input(f"Enter the name of capital in state {state}: ")
+        if guess == "exit":
+            print("You exit the porgram, Goodbye")
+            break
+        elif guess == capital:
+            print("You won")
+            break
+        else: 
+            print("Try again")
+            
+guess_capital(capitals_dict)

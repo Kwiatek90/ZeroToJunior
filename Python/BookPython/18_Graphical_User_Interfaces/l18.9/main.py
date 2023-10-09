@@ -27,7 +27,7 @@ def save_file():
     # 3
     with open(filepath, "w") as output_file:
         text = txt_edit.get("1.0", tk.END)
-    output_file.write(text)
+        output_file.write(text)
     
     window.title(f"Simple Text Editor - {filepath}")
 # 

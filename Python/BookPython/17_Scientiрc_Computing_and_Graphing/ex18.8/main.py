@@ -2,6 +2,7 @@
 #This application is based off the poem generator from Chapter 9.
 import tkinter as tk
 import random
+from tkinter.filedialog import asksaveasfilename
 
 #programmer, laptop, code
 #typed, napped, cheered
@@ -33,8 +34,10 @@ def generate_poem():
     prep2 = random.choice(prepositions)
 
     adverb1 =  random.choice(adverbs)
- 
     
+    poem = "Your poem\n\n" + adj1 + noun1 + "\n\nA " + adj1 + noun1 + verb1 + prep1 + " the " + adj2 + noun2 + "\n" + adverb1 + ", the " + noun1 + verb2 + "\nthe " + noun2 + verb3 + prep2 + " a " + adj3 + noun3
+    lbl_poem["text"] = poem
+
 
 def split_words(entry_words):
     words = entry_words.get()
@@ -45,7 +48,20 @@ def check_poem():
     if len(split_words(ent_nouns)) < 3 or len(split_words(ent_verbs)) < 3 or len(split_words(ent_adjectives)) < 3 or len(split_words(ent_prepositions)) < 3 or len(split_words(ent_adverbs)) < 1:
         lbl_poem["text"] = "You Didn't Enter Enough Words"
     else:
-        False
+        generate_poem()
+        
+        
+def save_to_file():
+    filepath = asksaveasfilename( defaultextension="txt", filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")],)
+    
+    if not filepath:
+        return
+    
+    with open(filepath, "w") as output_file:
+        text_to_save = lbl_poem["text"]
+        output_file.write(text_to_save)
+    
+        window.title(f"Poem to save")
 
 window = tk.Tk()
 window.rowconfigure([0,1,2], minsize=50, weight=0)
@@ -98,7 +114,7 @@ frm_poem.rowconfigure(1, weight=1)
 lbl_poem = tk.Label(master=frm_poem, text="Your poem")
 lbl_poem.grid(row=0, column=0)
 
-btn_save = tk.Button(master=frm_poem, text="Save to File")
+btn_save = tk.Button(master=frm_poem, text="Save to File", command=save_to_file)
 btn_save.grid(row=1, column=0, padx=10, pady=10, sticky="s")
 
 window.mainloop()

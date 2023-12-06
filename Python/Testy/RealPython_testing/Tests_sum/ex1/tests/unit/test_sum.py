@@ -1,5 +1,6 @@
+import timeit
 import unittest
-from my_sum import sum
+from __init__ import sum
 from fractions import Fraction
 
 class TestSum(unittest.TestCase):
@@ -31,3 +32,4 @@ class TestSum(unittest.TestCase):
 #it starts the test in terminal
 if __name__ == "__main__":
     unittest.main()
+    

@@ -38,10 +38,6 @@ def connect():
         cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
-    finally:
-        if conn_db is not None:
-            conn_db.close()
-            print('Database connection closed.')
 #conn_db =  psycopg2.connect(host="127.0.0.1", database="suppliers", user="postgres", password="admin")
 
 if __name__ == '__main__':

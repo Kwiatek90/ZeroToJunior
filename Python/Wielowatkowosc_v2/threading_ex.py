@@ -1,21 +1,28 @@
 import time 
-import threading
+import concurrent.futures 
 
 start = time.perf_counter()
 
-def do_smth():
-    print("Sleeping 1 second ...")
-    time.sleep(1)
-    print("Done sleeping")
+def do_smth(seconds):
+    print(f"Sleeping {seconds} second(s) ...")
+    time.sleep(seconds)
+    return "Done sleeping"
   
-threads = []    
-for _ in range(10):
-    t = threading.Thread(target=do_smth)
-    t.start()
-    threads.append(t)
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    secs = [5,4,3,2,1]
+    results = executor.map(do_smth, secs)
+    
+    for result in results:
+        print(result)
+  
+#threads = []    
+#for _ in range(10):
+#    t = threading.Thread(target=do_smth, args=[1.5])
+#    t.start()
+#    threads.append(t)
 
-for thread in threads:
-    thread.join()
+#for thread in threads:
+#    thread.join()
     
 finish = time.perf_counter()
 
